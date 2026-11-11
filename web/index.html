@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="Chatrix — a simple private messenger with on-device encryption.">
+  <title>Chatrix — Your words. Yours alone.</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <section id="auth-view" class="auth-view" aria-label="Sign in to Chatrix">
+    <div class="auth-showcase">
+      <div class="auth-brand"><span class="brand-mark">c</span><span>chatrix</span></div>
+      <div class="showcase-copy">
+        <span class="eyebrow"><i class="status-dot"></i> ROOM FOR WHAT MATTERS</span>
+        <h1>Your words.<br><em>Yours alone.</em></h1>
+        <p>A quiet space for conversation — free from noise, with messages encrypted right on your device.</p>
+      </div>
+      <div class="showcase-chat" aria-hidden="true">
+        <div class="showcase-top"><span class="avatar avatar-olive">A</span><div><strong>Alina</strong><small><i class="status-dot"></i> online</small></div><span class="mini-lock">⌑</span></div>
+        <div class="sample-message">How was your day?</div>
+        <div class="sample-message sample-out">Better now that you’re here <span>✓✓</span></div>
+        <div class="sample-meta"><span></span> encrypted conversation</div>
+      </div>
+      <div class="showcase-bottom"><span>PRIVATE MEANS PRIVATE</span><span>01 / 03</span></div>
+    </div>
+    <div class="auth-panel">
+      <button id="theme-auth" class="icon-button theme-switch" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      <div class="auth-form-wrap">
+        <div class="mobile-brand"><span class="brand-mark">c</span><span>chatrix</span></div>
+        <div id="auth-content"></div>
+      </div>
+      <div class="auth-foot"><span>Quiet conversations, truly yours.</span><a href="#security" id="security-link">How security works</a></div>
+    </div>
+  </section>
+
+  <main id="app-view" class="app-view hidden">
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-head">
+        <a class="brand" href="#" aria-label="Chatrix"><span class="brand-mark">c</span><span>chatrix</span></a>
+        <div class="head-actions"><button id="theme-app" class="icon-button" title="Toggle theme" aria-label="Toggle theme">◐</button><button id="new-chat" class="icon-button add-chat" title="New chat" aria-label="New chat">＋</button></div>
+      </header>
+      <label class="search-box"><span class="search-icon">⌕</span><input id="search-input" type="search" placeholder="Search or start a chat" autocomplete="off"><kbd>⌘ K</kbd></label>
+      <nav class="filters" aria-label="Filter chats"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="unread">Unread <span id="unread-total" class="filter-count hidden">0</span></button><button class="filter" data-filter="online">Online</button></nav>
+      <div id="sidebar-results" class="sidebar-results"></div>
+      <div id="chat-list" class="chat-list"></div>
+      <div class="sidebar-bottom">
+        <div class="privacy-note"><span class="privacy-icon">⌑</span><span>Messages are encrypted<br><small>your keys stay in your control</small></span><span class="privacy-pulse"></span></div>
+        <div class="profile-row"><span id="my-avatar" class="avatar avatar-me">M</span><div class="profile-copy"><strong id="my-name">My profile</strong><small id="my-handle">@username</small></div><button id="logout" class="icon-button logout" title="Sign out" aria-label="Sign out">↗</button></div>
+      </div>
+    </aside>
+    <section id="chat-panel" class="chat-panel">
+      <div id="empty-state" class="empty-state">
+        <div class="empty-orbit"><div class="empty-orbit-inner"><span class="brand-mark">c</span></div><i class="orbit-dot dot-one"></i><i class="orbit-dot dot-two"></i><i class="orbit-dot dot-three"></i></div>
+        <p class="eyebrow">YOUR SPACE</p><h2>Start with a simple<br><em>“hello”</em></h2><p class="empty-sub">Choose a conversation or find someone by their username.</p>
+        <button id="empty-new-chat" class="primary-button"><span>＋</span> New chat</button>
+        <div class="empty-secure"><span>⌑</span> Only participants can read this conversation</div>
+      </div>
+      <div id="active-chat" class="active-chat hidden">
+        <header class="chat-header">
+          <button id="back-to-list" class="icon-button back-button" aria-label="Back to chats">‹</button>
+          <span id="peer-avatar" class="avatar avatar-peer">A</span>
+          <div class="peer-info"><strong id="peer-name">Name</strong><small id="peer-status">Checking connection…</small></div>
+          <div class="header-spacer"></div>
+          <button id="key-info" class="encryption-pill" title="Encryption details"><span>⌑</span><span id="encryption-label">ENCRYPTED</span><i></i></button>
+          <button id="chat-menu" class="icon-button more-button" title="Chat details" aria-label="Chat details">···</button>
+        </header>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div class="composer-wrap">
+          <div id="composer-hint" class="composer-hint"><span class="hint-dot"></span> End-to-end encryption is on</div>
+          <form id="composer" class="composer">
+            <button type="button" id="emoji-button" class="composer-tool" title="Add emoji" aria-label="Add emoji">☺</button>
+            <button type="button" id="attach-button" class="composer-tool attach" title="Attach a file" aria-label="Attach a file">⌁</button>
+            <input id="file-input" type="file" class="hidden" accept="image/*,.txt,.pdf,.doc,.docx">
+            <textarea id="message-input" rows="1" placeholder="Write a message…" maxlength="4000" aria-label="Message text"></textarea>
+            <button type="submit" id="send-button" class="send-button" title="Send" aria-label="Send">↑</button>
+          </form>
+          <div class="composer-caption"><span>Enter to send</span><span>Chatrix <i>·</i> your words belong to you</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-layer" class="modal-layer hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-card"><button id="modal-close" class="icon-button modal-close" aria-label="Close">×</button><div id="modal-content"></div></div></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
